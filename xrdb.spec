@@ -4,7 +4,7 @@
 #
 Name     : xrdb
 Version  : 1.1.0
-Release  : 7
+Release  : 8
 URL      : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.1.0.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.1.0.tar.gz
 Summary  : No detailed summary available
