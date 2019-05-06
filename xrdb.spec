@@ -6,7 +6,7 @@
 #
 Name     : xrdb
 Version  : 1.2.0
-Release  : 11
+Release  : 12
 URL      : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.0.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.0.tar.gz
 Source99 : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.0.tar.gz.sig
@@ -29,7 +29,6 @@ xrdb - X server resource database utility
 Summary: bin components for the xrdb package.
 Group: Binaries
 Requires: xrdb-license = %{version}-%{release}
-Requires: xrdb-man = %{version}-%{release}
 
 %description bin
 bin components for the xrdb package.
@@ -59,7 +58,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550624033
+export SOURCE_DATE_EPOCH=1557106730
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -71,7 +77,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1550624033
+export SOURCE_DATE_EPOCH=1557106730
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xrdb
 cp COPYING %{buildroot}/usr/share/package-licenses/xrdb/COPYING
