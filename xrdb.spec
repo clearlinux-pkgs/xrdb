@@ -6,10 +6,10 @@
 #
 Name     : xrdb
 Version  : 1.2.0
-Release  : 13
+Release  : 14
 URL      : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.0.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.0.tar.gz
-Source99 : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.0.tar.gz.sig
+Source1  : http://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.0.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT MIT-Opengroup
@@ -52,35 +52,37 @@ man components for the xrdb package.
 
 %prep
 %setup -q -n xrdb-1.2.0
+cd %{_builddir}/xrdb-1.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1557106730
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604541939
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1557106730
+export SOURCE_DATE_EPOCH=1604541939
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xrdb
-cp COPYING %{buildroot}/usr/share/package-licenses/xrdb/COPYING
+cp %{_builddir}/xrdb-1.2.0/COPYING %{buildroot}/usr/share/package-licenses/xrdb/cb4fddde90392eaba06ca78fe8e22232fc4d132e
 %make_install
 
 %files
@@ -92,7 +94,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/xrdb/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/xrdb/COPYING
+/usr/share/package-licenses/xrdb/cb4fddde90392eaba06ca78fe8e22232fc4d132e
 
 %files man
 %defattr(0644,root,root,0755)
